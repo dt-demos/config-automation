@@ -1,0 +1,4 @@
+{
+    "dynatraceHostName": "<e.g. XXXXX.live.dynatrace.com>",
+    "dynatraceApiToken": "<your dynatrace API token>",
+}

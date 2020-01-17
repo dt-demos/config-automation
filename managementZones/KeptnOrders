@@ -1,0 +1,27 @@
+{
+  "name": "KeptnOrders",
+  "rules": [
+    {
+      "type": "SERVICE",
+      "enabled": true,
+      "propagationTypes": [],
+      "conditions": [
+        {
+          "key": {
+            "attribute": "SERVICE_TAGS"
+          },
+          "comparisonInfo": {
+            "type": "TAG",
+            "operator": "EQUALS",
+            "value": {
+              "context": "ENVIRONMENT",
+              "key": "app",
+              "value": "keptn-orders"
+            },
+            "negate": false
+          }
+        }
+      ]
+    }
+  ]
+}

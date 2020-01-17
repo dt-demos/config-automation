@@ -1,0 +1,22 @@
+{
+	"name": "WebAppDemoIIS",
+	"rules": [{
+		"type": "SERVICE",
+		"enabled": true,
+		"valueFormat": null,
+		"propagationTypes": [],
+		"conditions": [{
+			"key": {
+				"attribute": "SERVICE_TECHNOLOGY"
+			},
+			"comparisonInfo": {
+				"type": "SIMPLE_TECH",
+				"operator": "EQUALS",
+				"value": {
+					"type": "IIS_APP_POOL"
+				},
+				"negate": false
+			}
+		}]
+	}]
+}

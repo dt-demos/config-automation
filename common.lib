@@ -1,0 +1,28 @@
+################################################################
+# This is shared library
+################################################################
+
+validate_creds_file()
+{
+	if ! [ -f "$CREDS_FILE" ]; then
+		echo "ABORTING: missing creds.json file"
+		echo "creds.json needs to have contents of:"
+		echo "{"
+		echo "    \"dynatraceHostName\": \"<base URL like XXXX.live.dynatrace.com>\", "
+		echo "    \"dynatraceApiToken\": \"<Your token>\""
+		echo "}"
+		exit 1
+	fi
+
+	DT_TENANT_HOSTNAME=$(cat $CREDS_FILE | jq -r '.dynatraceHostName')
+	DT_API_TOKEN=$(cat $CREDS_FILE | jq -r '.dynatraceApiToken')
+
+	if [ "$DT_TENANT_HOSTNAME" == null ]; then
+		echo "ABORTING: missing DT_TENANT_HOSTNAME in creds.json file"
+		exit 1
+	fi
+	if [ "$DT_API_TOKEN" == null ]; then
+		echo "ABORTING: missing DT_API_TOKEN in creds.json file"
+		exit 1
+	fi
+}
