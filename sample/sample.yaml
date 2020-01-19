@@ -1,0 +1,16 @@
+--
+application:
+  name: sample
+  description: sample rules for demonstration
+  autotaggingrules:
+    - WebAppDemoApp
+    - WebAppDemoOwner
+    - WebAppDemoService
+    - WebAppDemoStage
+  managementzones:
+    - KeptnOrders
+  requestattributes:
+    - LoadScriptName
+    - LoadStepName
+    - LoadTestName
+
