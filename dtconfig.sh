@@ -52,81 +52,53 @@ echo ""
 # create environment variables from yaml file
 create_variables $CONFIG_FILE
 
+#parse_yaml $CONFIG_FILE
+
 # process autotaggingrules
+x=0
 for autotaggingrule in ${application_autotaggingrules[*]}; do
-  CONFIG_NAME="$autotaggingrule"
+  CONFIG_NAME="${application_autotaggingrules[x]}"
   CONFIG_DIR="$CONFIG_FILE_DIR/auto-tagging-rules"
   CONFIG_FILE="$CONFIG_DIR/$CONFIG_NAME"
   CONFIG_API_NAME="autoTags"
   CONFIG_LABEL="Auto Tagging Rule"
-  case $ACTION in
-    get)
-      ./helper-scripts/getConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    add)
-      ./helper-scripts/addConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_FILE $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    delete)
-      ./helper-scripts/deleteConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    save)
-      rm -rf "$CONFIG_DIR"
-      mkdir "$CONFIG_DIR"
-      ./helper-scripts/saveConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-  esac
+  execute_action $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" "$CONFIG_DIR" "$CONFIG_API_NAME" "$CONFIG_LABEL"
   x="$((x+1))"
 done
 
 # process managementzones
+x=0
 for managementzone in ${application_managementzones[*]}; do
-  CONFIG_NAME="$managementzone"
+  CONFIG_NAME="${application_managementzones[x]}"
   CONFIG_DIR="$CONFIG_FILE_DIR/management-zones"
   CONFIG_FILE="$CONFIG_DIR/$CONFIG_NAME"
   CONFIG_API_NAME="managementZones"
   CONFIG_LABEL="Management Zone"
-  case $ACTION in
-    get)
-      ./helper-scripts/getConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    add)
-      ./helper-scripts/addConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_FILE $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    delete)
-      ./helper-scripts/deleteConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    save)
-      rm -rf "$CONFIG_DIR"
-      mkdir "$CONFIG_DIR"
-      ./helper-scripts/saveConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-  esac
+  execute_action $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
   x="$((x+1))"
 done
 
 # process requestattributes
+x=0
 for requestattribute in ${application_requestattributes[*]}; do
-  CONFIG_NAME="$requestattribute"
+  CONFIG_NAME="${application_requestattributes[x]}"
   CONFIG_DIR="$CONFIG_FILE_DIR/request-attributes"
   CONFIG_FILE="$CONFIG_DIR/$CONFIG_NAME"
   CONFIG_API_NAME="service/requestAttributes"
   CONFIG_LABEL="Request Attribute"
-  case $ACTION in
-    get)
-      ./helper-scripts/getConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    add)
-      ./helper-scripts/addConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_FILE $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    delete)
-      ./helper-scripts/deleteConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-    save)
-      rm -rf "$CONFIG_DIR"
-      mkdir "$CONFIG_DIR"
-      ./helper-scripts/saveConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
-      ;;
-  esac
+  execute_action $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
+  x="$((x+1))"
+done
+
+# process alertingprofile
+x=0
+for alertingprofile in ${application_alertingprofiles[*]}; do
+  CONFIG_NAME="${application_alertingprofiles[x]}"
+  CONFIG_DIR="$CONFIG_FILE_DIR/alerting-profile"
+  CONFIG_FILE="$CONFIG_DIR/$CONFIG_NAME"
+  CONFIG_API_NAME="alertingProfiles"
+  CONFIG_LABEL="Alerting Profiles"
+  execute_action $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
   x="$((x+1))"
 done
 

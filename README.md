@@ -1,6 +1,6 @@
 # Overview
 
-This project is to show how to use the Dynatrace APIs for configuration using configuration as code.
+This project is to show how to use the [Dynatrace configuration API](https://www.dynatrace.com/support/help/extend-dynatrace/dynatrace-api/configuration-api/) with the configuration as code model.
 
 A script named ```dtconfig.sh``` will parse the values in a provided YAML file that defines the various configurations to process.  A configuraton is in a single YAML file and Dynatrace configuration JSON files are in subfolders. See the ```sample/sample.yaml``` and subfolders as examples.
 
@@ -10,6 +10,11 @@ Currently, the following are supported:
 * Auto tagging rules
 * Management zones
 * Request naming rules
+* Alerting profiles
+
+**Limitations**
+* Config file names can not not have a space. Need to figure out the syntax of jq filter
+* If add problem notifications, then need to figure out how to store alerting profile.  Since the  ID is stored in the notification and this id will change when the alering profile is re-added.
 
 # Setup Dynatrace and Credentials file
 

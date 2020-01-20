@@ -1,6 +1,32 @@
 ################################################################
 # This is shared library
 ################################################################
+execute_action()
+{
+    DT_TENANT_HOSTNAME=$1
+    DT_API_TOKEN=$2
+    CONFIG_NAME=$3
+    CONFIG_DIR=$4
+    CONFIG_API_NAME=$5
+    CONFIG_LABEL=$6
+    case $ACTION in
+        get)
+        ./helper-scripts/getConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
+        ;;
+        add)
+        ./helper-scripts/addConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_FILE $CONFIG_API_NAME "$CONFIG_LABEL"
+        ;;
+        delete)
+        ./helper-scripts/deleteConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_API_NAME "$CONFIG_LABEL"
+        ;;
+        save)
+        rm -rf "$CONFIG_DIR"
+        mkdir "$CONFIG_DIR"
+        ./helper-scripts/saveConfig.sh $DT_TENANT_HOSTNAME $DT_API_TOKEN "$CONFIG_NAME" $CONFIG_DIR $CONFIG_API_NAME "$CONFIG_LABEL"
+        ;;
+    esac
+}
+
 validate_config_file()
 {
 	if ! [ -f "$1" ]; then

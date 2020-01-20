@@ -13,4 +13,5 @@ application:
     - LoadScriptName
     - LoadStepName
     - LoadTestName
-
+  alertingprofiles:
+    - keptn-orders

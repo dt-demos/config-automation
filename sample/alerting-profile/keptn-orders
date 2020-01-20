@@ -1,0 +1,91 @@
+{
+  "displayName": "keptn-orders",
+  "rules": [
+    {
+      "severityLevel": "AVAILABILITY",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    },
+    {
+      "severityLevel": "ERROR",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    },
+    {
+      "severityLevel": "PERFORMANCE",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 30
+    },
+    {
+      "severityLevel": "RESOURCE_CONTENTION",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 30
+    },
+    {
+      "severityLevel": "CUSTOM_ALERT",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    },
+    {
+      "severityLevel": "MONITORING_UNAVAILABLE",
+      "tagFilter": {
+        "includeMode": "INCLUDE_ANY",
+        "tagFilters": [
+          {
+            "context": "ENVIRONMENT",
+            "key": "app",
+            "value": "keptn-orders"
+          }
+        ]
+      },
+      "delayInMinutes": 0
+    }
+  ],
+  "managementZoneId": null,
+  "eventTypeFilters": []
+}
