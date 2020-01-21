@@ -53,6 +53,7 @@ echo ""
 create_variables $CONFIG_FILE
 
 #parse_yaml $CONFIG_FILE
+exit
 
 # process autotaggingrules
 x=0
